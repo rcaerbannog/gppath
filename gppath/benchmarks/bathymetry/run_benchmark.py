@@ -31,7 +31,7 @@ def run(casename):
     inputs = GaussianInputs(domain, [0.5,0.5], [0.01,0.01])
     noise_var = 0.0
 
-    interpolant = interpolate.interp2d(lons, lats, depths, kind="cubic")
+    interpolant = interpolate.RectBivariateSpline(lons, lats, depths.T)
     my_map = BlackBox(map_def, args=(interpolant,), noise_var=noise_var)
     idx_max = np.unravel_index(depths.argmin(), depths.shape)
     true_xmin = [ lons[idx_max[1]], lats[idx_max[0]] ]

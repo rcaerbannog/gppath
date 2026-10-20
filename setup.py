@@ -1,3 +1,4 @@
+import setuptools
 from setuptools import setup
 
 with open("requirements.txt", "r") as req:

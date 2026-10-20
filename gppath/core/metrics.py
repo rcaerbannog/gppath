@@ -119,7 +119,7 @@ def log_pdf(m_list, inputs, pts=None, pt_list=None, clip=True, t_list=None):
 
         log_diff = np.abs(log_yb-log_yt)
         noInf = np.isfinite(log_diff)
-        res[ii] = np.trapz(log_diff[noInf], x_eva[noInf])
+        res[ii] = np.trapezoid(log_diff[noInf], x_eva[noInf])
 
     return res
 

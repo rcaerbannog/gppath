@@ -162,7 +162,7 @@ class OptimalPath(object):
                     qs, ts = np.array(qs), np.array(ts)
                     x_eval = np.hstack(( qs[:,0:2], t_cur+ts[:,None] ))
                     ac = acq.evaluate(x_eval)
-                    reward.append(np.trapz(ac.squeeze(),ts))
+                    reward.append(np.trapezoid(ac.squeeze(),ts))
                 popt = paths[np.argmin(reward)]
 
             t_int = t_cur + popt.path_length()
@@ -362,7 +362,7 @@ class OptimalPathStatic(object):
                     qs, ts = path_planner.make_itinerary(p,200)
                     qs, ts = np.array(qs), np.array(ts)
                     ac = acq.evaluate(qs[:,0:2])
-                    reward.append(np.trapz(ac.squeeze(),ts))
+                    reward.append(np.trapezoid(ac.squeeze(),ts))
                 popt = paths[np.argmin(reward)]
 
             t_int = t_cur + popt.path_length()
